@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: DeepPR Serverless Backend
+
+Resources:
+  DeepPRApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: app.main.handler
+      Runtime: python3.11
+      MemorySize: 512
+      Timeout: 60
+      Environment:
+        Variables:
+          DEFAULT_LLM_PROVIDER: "bedrock"
+          GEMINI_API_KEY: ""
+      Events:
+        ApiEvent:
+          Type: HttpApi
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+
