@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-canvas text-ink antialiased selection:bg-accent selection:text-white;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-normal;
+  }
+}
+
+@layer components {
+  .pill-primary {
+    @apply bg-ink text-canvas rounded-full px-6 py-3 font-semibold transition hover:opacity-90;
+  }
+  .pill-outline {
+    @apply bg-transparent text-ink border border-hairline rounded-full px-6 py-3 font-semibold transition hover:bg-canvasSoft;
+  }
+  .pill-soft {
+    @apply bg-canvasSoft text-ink rounded-full px-6 py-3 font-semibold transition hover:bg-hairline;
+  }
+  .card {
+    @apply bg-canvas border border-hairline rounded-md p-8;
+  }
+  .card-soft {
+    @apply bg-canvasSoft rounded-md p-8;
+  }
+  .input-field {
+    @apply bg-field text-ink placeholder:text-textFaint rounded-sm px-4 py-3 outline-none border-2 border-transparent focus:border-ink transition-colors;
+  }
+}
+
+@layer utilities {
+  .shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  .shine-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.25), transparent);
+    transform: skewX(-20deg);
+    animation: shine 5s infinite ease-in-out;
+  }
+
+  @keyframes shine {
+    0% { left: -100%; }
+    40% { left: 200%; }
+    100% { left: 200%; }
+  }
+
+  /* Safe standard spinning border */
+  .border-beam {
+    position: relative;
+    overflow: hidden;
+  }
+  .border-beam::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(transparent, transparent 70%, #0066ff 100%);
+    animation: rotate 4s linear infinite;
+    z-index: 0;
+  }
+  .border-beam::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: #262626; /* Match canvasSoft */
+    border-radius: inherit;
+    z-index: 1;
+  }
+  
+  /* Ensure children of border-beam stay above the pseudo elements */
+  .border-beam > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .fade-in-section {
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+}
+
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(24px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
