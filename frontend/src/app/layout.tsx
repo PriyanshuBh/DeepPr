@@ -2,6 +2,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import WakeUpBackend from "@/components/WakeUp";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,11 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className + " bg-zinc-950 text-zinc-50"}>
-                  <Navbar />
+        <Navbar />
         <WakeUpBackend />
-          {children}
-              </body>
+        {children}
+      </body>
     </html>
   );
 }
-
