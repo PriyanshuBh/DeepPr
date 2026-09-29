@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -19,8 +19,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className + " bg-zinc-950 text-zinc-50"}>
                   <Navbar />
+        <WakeUpBackend />
           {children}
               </body>
     </html>
   );
 }
+
