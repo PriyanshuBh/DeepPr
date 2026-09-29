@@ -16,7 +16,7 @@ def get_memory_client():
             }
         },
         "llm": {
-            "provider": "gemini" if os.getenv("DEFAULT_LLM_PROVIDER") == "gemini" else "aws_bedrock",
+            "provider": os.getenv("DEFAULT_LLM_PROVIDER", "gemini"),
             "config": {
                 "api_key": os.getenv("GEMINI_API_KEY"),
                 "model": "gemini-3.8-flash"
